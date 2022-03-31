@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <EditText
+        android:id="@+id/etSignUpUser"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="50dp"
+        android:ems="10"
+        android:hint="@string/action_username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="101dp" />
+
+    <EditText
+        android:id="@+id/etSignUpPass"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/etSignUpUser"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="50dp"
+        android:ems="10"
+        android:hint="@string/action_password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/etConPass"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/etSignUpPass"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="50dp"
+        android:ems="10"
+        android:hint="@string/action_confirm_password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/etConPass"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="150dp"
+        android:text="Button" />
+</RelativeLayout>

@@ -10,25 +10,38 @@
     <EditText
         android:id="@+id/et_username"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/action_username"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/action_password"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btn_Submit"
+        android:id="@+id/btn_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="150dp"
-        android:text="Login" />
+        android:text="@string/action_sign_in_short" />
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="150dp"
+        android:text="@string/action_sign_up" />
 </LinearLayout>
