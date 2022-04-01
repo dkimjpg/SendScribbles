@@ -53,14 +53,27 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btnSignUp"
+        android:id="@+id/btnSignUpConfirm"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_below="@+id/etConPass"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="150dp"
+        android:layout_marginStart="130dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="150dp"
-        android:text="Button" />
+        android:layout_marginEnd="130dp"
+        android:text="@string/action_sign_up" />
+
+    <Button
+        android:id="@+id/btnGoToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/btnSignUpConfirm"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="50dp"
+        android:text="Already have an Account? Click Here"
+        android:textSize="12sp" />
 </RelativeLayout>

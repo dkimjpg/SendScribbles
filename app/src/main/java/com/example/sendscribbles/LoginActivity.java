@@ -15,7 +15,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "LoginActvity";
+    private static final String TAG = "LoginActivity";
     private EditText etUser;
     private EditText etPass;
     private Button btnSignIn;
@@ -45,6 +45,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToNewUserActivity();
+            }
+        });
+
 
     }
 
@@ -64,7 +71,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goToNewUserActivity(){
-
+        Intent i = new Intent(this,SignUpActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void goToMainActivity() {
