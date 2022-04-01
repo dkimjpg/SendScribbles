@@ -6,3 +6,11 @@
 - [ ] User can create a new post, create a drawing and upload onto their feed.
 - [ ] User can view recent posts from others in the application
 - [ ] User can view their Profile which contains all of their posts that they have created
+
+## Video Walkthrough
+
+Here is a gif of the progress so far in our project.
+
+<img src='http://g.recordit.co/kFO1LlsqED.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [Recordit](https://recordit.co/?utm_source=player&utm_medium=header&utm_campaign=recordit?utm_source=player&utm_medium=header&utm_campaign=recordit).
