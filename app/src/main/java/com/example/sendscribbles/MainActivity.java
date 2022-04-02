@@ -20,7 +20,6 @@ import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
     final FragmentManager fragmentManager = getSupportFragmentManager();
-    private Button btnLogOut;
     private BottomNavigationView bottomNavigationView;
 
 
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnLogOut = findViewById(R.id.btnLogOut);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -56,18 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LogoutUser();
-            }
-        });
     }
 
-    private void LogoutUser() {
-        ParseUser.logOut();
-        Intent i = new Intent(this, LoginActivity.class);
-        startActivity(i);
-        finish();
-    }
+
 }
