@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.sendscribbles.Fragments.NewPostFragment;
+import com.example.sendscribbles.Fragments.ComposeFragment;
 import com.example.sendscribbles.Fragments.ProfileFragment;
 import com.example.sendscribbles.Fragments.UserFeedFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new UserFeedFragment();
                         break;
                     case R.id.actionNewPost:
-                        fragment = new NewPostFragment();
+                        fragment = new ComposeFragment();
                         break;
                     case R.id.actionProfile:
                         fragment = new ProfileFragment();
