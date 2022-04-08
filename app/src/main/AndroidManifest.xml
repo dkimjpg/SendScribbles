@@ -28,6 +28,16 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"></activity>
+
+        <meta-data
+            android:name="com.parse.SERVER_URL"
+            android:value="https://parseaapi.back4app_server_url" />
+        <meta-data
+            android:name="com.parse.APPLICATION_ID"
+            android:value="pPl9jgmXjxbAE3QMJv1JvXt4KIK8hu6smR0MwJoI" />
+        <meta-data
+            android:name="com.parse.CLIENT_KEY"
+            android:value="tm1RyLvGEYrrkCTn4rNn1U4QTLnXHOtsiRRt5yxZ" />
     </application>
 
 </manifest>

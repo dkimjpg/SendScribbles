@@ -4,68 +4,32 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.sendscribbles.Post;
 import com.example.sendscribbles.R;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.io.File;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ComposeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ComposeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    private static final String ARG_PARAM1 = "param1"; //delete later
-    private static final String ARG_PARAM2 = "param2"; //delete later
-
-
-    // TODO: Rename and change types of parameters
-
-    private String mParam1; //delete later
-    private String mParam2; //delete later
-
-    public static final String TAG = "ComposeFragment";
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+    public static final String TAG = "Compose Fragment";
+    private ImageView ivDraw;
     private EditText etDescription;
-    private Button btnCaptureImage;
-    private ImageView ivPostImage;
     private Button btnSubmit;
-
-    private File photoFile;
-    public String photoFileName = "photo.jpg";
 
     public ComposeFragment() {
         // Required empty public constructor
-    }
-
-
-    // TODO: Rename and change types and number of parameters
-    public static ComposeFragment newInstance(String param1, String param2) { //probably don't need this entire thing, keep for now
-        ComposeFragment fragment = new ComposeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1); //delete later
-        args.putString(ARG_PARAM2, param2); //delete later
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) { //probably don't need this entire thing, keep for now
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1); //delete later
-            mParam2 = getArguments().getString(ARG_PARAM2); //delete later
-        }
     }
 
     @Override
@@ -74,9 +38,70 @@ public class ComposeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_compose, container, false);
     }
 
-    /*
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    Code for drawing canvas should probably go here
+        // objects
+        ivDraw = view.findViewById(R.id.ivDraw);
+        etDescription = view.findViewById(R.id.etDescription);
+        btnSubmit = view.findViewById(R.id.btnSubmit);
 
-    */
+        // Draw the image
+        // -------------------TO DO---------------------
+
+        // Submit button
+        btnSubmit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view){
+                // convert the content of description to a string
+                String content = etDescription.getText().toString();
+
+                // to check if the content is empty
+                if (content.isEmpty())
+                {
+                    Toast.makeText(getContext(), "Need to write a description", Toast.LENGTH_SHORT).show();
+                }
+
+                // to check if the drawing is empty
+                // ------------- TO DO -------------------
+
+                ParseUser currentUser = ParseUser.getCurrentUser();
+
+                // Lack the drawing (TO DO)
+                savePost(currentUser, content);
+            }
+        });
+    }
+
+    private void savePost(ParseUser currentUser, String content)
+    {
+        // ----- TO DO ------ Need to implement things for the drawing
+
+        // Declare post object
+        Post post = new Post();
+
+        // setting information
+        post.setUser(currentUser);
+        post.setKeyDescription(content);
+
+        post.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                // error checking
+                if (e != null)
+                {
+                    Log.e(TAG, "Saving posts issue", e);
+                    Toast.makeText(getContext(), "Errors with saving posts", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // post is successfully saved
+                Log.i(TAG, "Post is saved successfully");
+                // empty description box
+                etDescription.setText("");
+            }
+        });
+    }
 }

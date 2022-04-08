@@ -5,10 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.UserFeedFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="This is the user feed" />
-
+        android:layout_height="match_parent" />
 </FrameLayout>
