@@ -9,7 +9,7 @@
 
 ## Video Walkthrough
 
-Here is a gif of the progress so far in our project.
+Here is a gif of the progress in week 1 of the project
 
 <img src='http://g.recordit.co/kFO1LlsqED.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
