@@ -1,79 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etSignUpUser"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="50dp"
-        android:ems="10"
+    <TextView
+        android:id="@+id/tv_Register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/Register_title"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_SignUpUsername"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
         android:hint="@string/action_username"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="101dp" />
+        app:boxBackgroundColor="@android:color/transparent"
+        app:errorEnabled="true"
+        app:errorTextColor="#FF0000">
 
-    <EditText
-        android:id="@+id/etSignUpPass"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@+id/etSignUpUser"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="50dp"
-        android:ems="10"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_SignUpPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
         android:hint="@string/action_password"
-        android:inputType="textPassword" />
+        app:boxBackgroundColor="@android:color/transparent"
+        app:errorEnabled="true"
+        app:errorTextColor="#FF0000">
 
-    <EditText
-        android:id="@+id/etConPass"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@+id/etSignUpPass"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="50dp"
-        android:ems="10"
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_SignUpConPass"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
         android:hint="@string/action_confirm_password"
-        android:inputType="textPassword" />
+        app:boxBackgroundColor="@android:color/transparent"
+        app:errorEnabled="true"
+        app:errorTextColor="#FF0000">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnSignUpConfirm"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/etConPass"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="130dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="120dp"
         android:text="@string/action_sign_up" />
 
     <Button
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:id="@+id/btnGoToLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/btnSignUpConfirm"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="46dp"
         android:layout_marginEnd="50dp"
-        android:text="Already have an Account? Click Here"
+        android:text="@string/go_ToLogin"
         android:textSize="12sp" />
-</RelativeLayout>
+</LinearLayout>

@@ -1,8 +1,11 @@
 package com.example.sendscribbles;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,14 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
-    private EditText etUser;
-    private EditText etPass;
+    private TextInputLayout etUser;
+    private TextInputLayout etPass;
     private Button btnSignIn;
     private Button btnSignUp;
 
@@ -30,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
             goToMainActivity();
         }
 
-        etUser = findViewById(R.id.et_username);
-        etPass = findViewById(R.id.et_password);
+        etUser = findViewById(R.id.et_Username);
+        etPass = findViewById(R.id.et_Password);
         btnSignIn = findViewById(R.id.btn_signin);
         btnSignUp = findViewById(R.id.btn_signup);
 
@@ -39,8 +43,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG,"Login Button on Click");
-                String username = etUser.getText().toString();
-                String password = etPass.getText().toString();
+                String username = etUser.getEditText().getText().toString();
+                String password = etPass.getEditText().getText().toString();
                 loginUser(username,password);
             }
         });
@@ -61,7 +65,8 @@ public class LoginActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if(e != null){
                     Log.e(TAG, "Issue with login",e);
-                    Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
+                    etPass.setErrorEnabled(true);
+                    etPass.setError("Invalid Username or Password");
                     return;
                 }
                 goToMainActivity();
