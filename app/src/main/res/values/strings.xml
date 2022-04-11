@@ -16,6 +16,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="log_out">Logout</string>
     <string name="welcome_login_user">Welcome to ScribbleSends</string>
+    <string name="share_button_desc">Share Button</string>
+    <string name="favorite_button_desc">Favorite Button</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
