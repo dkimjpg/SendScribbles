@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardElevation="4dp">
+    app:cardElevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:id="@+id/tv_postitem_UserTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:textSize="20sp"
             tools:text="Default Username" />
 
@@ -32,9 +32,9 @@
             android:id="@+id/tv_postitem_Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             tools:text="This is an example of some text content that could appear while the user is scrolling through their feed." />
 

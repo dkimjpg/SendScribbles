@@ -22,6 +22,8 @@ import com.example.sendscribbles.EndlessRecyclerViewScrollListener;
 import com.example.sendscribbles.Post;
 import com.example.sendscribbles.R;
 import com.example.sendscribbles.postsAdapter;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -74,7 +76,7 @@ public class UserFeedFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                queryPost();
+                queryPost(view);
             }
         });
 
@@ -82,15 +84,15 @@ public class UserFeedFragment extends Fragment {
         endlessRecyclerViewScrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                loadMore(totalItemsCount);
+                loadMore(totalItemsCount, view);
             }
         };
-        rvPost.setOnScrollListener(endlessRecyclerViewScrollListener);
+        rvPost.addOnScrollListener(endlessRecyclerViewScrollListener);
 
-        queryPost();
+        queryPost(view);
     }
 
-    private void loadMore(int offset) {
+    private void loadMore(int offset, View view) {
         // ParseQuery object
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
 
@@ -120,7 +122,7 @@ public class UserFeedFragment extends Fragment {
         });
     }
 
-    protected void queryPost() {
+    protected void queryPost(View view) {
         adapter.clear();
         // ParseQuery object
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
@@ -135,6 +137,14 @@ public class UserFeedFragment extends Fragment {
             public void done(List<Post> posts, ParseException e) {
                 // error checking
                 if (e != null) {
+                    if(e.getCode() == ParseException.CONNECTION_FAILED){
+                        Snackbar.make(view,"Connection Timed Out. Check your Internet", Snackbar.LENGTH_INDEFINITE).setAction("Retry", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                queryPost(view);
+                            }
+                        }).setBehavior(new NoSwipeBehavior()).show();
+                    }
                     Log.e(TAG, "Getting posts issue", e);
                     return;
                 }
@@ -148,5 +158,13 @@ public class UserFeedFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+    }
+
+    class NoSwipeBehavior extends BaseTransientBottomBar.Behavior {
+
+        @Override
+        public boolean canSwipeDismissView(View child) {
+            return false;
+        }
     }
 }

@@ -18,6 +18,7 @@ import com.example.sendscribbles.LoginActivity;
 import com.example.sendscribbles.Post;
 import com.example.sendscribbles.R;
 import com.example.sendscribbles.postsAdapter;
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -35,7 +36,7 @@ public class ProfileFragment extends UserFeedFragment {
 
 
     @Override
-    protected void queryPost() {
+    protected void queryPost(View view) {
         adapter.clear();
         // ParseQuery object
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
@@ -50,6 +51,14 @@ public class ProfileFragment extends UserFeedFragment {
             public void done(List<Post> posts, ParseException e) {
                 // error checking
                 if (e != null) {
+                    if(e.getCode() == ParseException.CONNECTION_FAILED){
+                        Snackbar.make(view,"Connection Timed Out. Check your Internet", Snackbar.LENGTH_INDEFINITE).setAction("Retry", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                queryPost(view);
+                            }
+                        }).show();
+                    }
                     Log.e(TAG, "Getting posts issue", e);
                     return;
                 }

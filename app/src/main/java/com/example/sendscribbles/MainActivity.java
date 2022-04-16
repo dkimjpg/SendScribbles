@@ -17,13 +17,13 @@ import com.example.sendscribbles.Fragments.ProfileFragment;
 import com.example.sendscribbles.Fragments.UserFeedFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.snackbar.Snackbar;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
     private Button btnSignOut;
+    private int prevButton = R.id.actionHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,21 +50,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment;
+                prevButton = bottomNavigationView.getSelectedItemId();
                 switch(item.getItemId()){
                     case R.id.actionHome:
                         fragment = new UserFeedFragment();
+                        fragmentManager.beginTransaction().setCustomAnimations(R.anim.slidein_from_left,R.anim.slideout_to_right).replace(R.id.frameLayout,fragment).commit();
                         break;
                     case R.id.actionNewPost:
                         fragment = new ComposeFragment();
+                        if(prevButton == R.id.actionHome){
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slidein_from_right,R.anim.slideout_to_left).replace(R.id.frameLayout,fragment).commit();
+                        }
+                        else{
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slidein_from_left,R.anim.slideout_to_right).replace(R.id.frameLayout,fragment).commit();
+                        }
                         break;
                     case R.id.actionProfile:
                         fragment = new ProfileFragment();
+                        fragmentManager.beginTransaction().setCustomAnimations(R.anim.slidein_from_right,R.anim.slideout_to_left).replace(R.id.frameLayout,fragment).commit();
                         break;
                     default:
                         fragment = new UserFeedFragment();
+                        fragmentManager.beginTransaction().replace(R.id.frameLayout,fragment).commit();
                         break;
                 }
-                fragmentManager.beginTransaction().replace(R.id.frameLayout,fragment).commit();
                 return true;
             }
 
