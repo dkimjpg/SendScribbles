@@ -36,6 +36,7 @@ public class ProfileFragment extends UserFeedFragment {
 
     @Override
     protected void queryPost() {
+        adapter.clear();
         // ParseQuery object
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
 
@@ -58,8 +59,8 @@ public class ProfileFragment extends UserFeedFragment {
                     Log.i(TAG, post.getUser().getUsername() + " : post is success");
                 }
 
-                Posts.addAll(posts);
-                adapter.notifyDataSetChanged();
+                adapter.addAll(posts);
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }

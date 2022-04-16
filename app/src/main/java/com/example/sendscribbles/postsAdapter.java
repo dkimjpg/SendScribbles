@@ -29,7 +29,7 @@ public class postsAdapter extends RecyclerView.Adapter<postsAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_post_new, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,6 +45,17 @@ public class postsAdapter extends RecyclerView.Adapter<postsAdapter.ViewHolder> 
         return posts.size();
     }
 
+    public void clear(){
+        posts.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Post> list){
+        posts.addAll(list);
+        notifyDataSetChanged();
+    }
+
+
     class ViewHolder extends RecyclerView.ViewHolder{
 
         // variables declaration
@@ -56,9 +67,9 @@ public class postsAdapter extends RecyclerView.Adapter<postsAdapter.ViewHolder> 
             super(itemView);
 
             // setting the variables
-            tvUsername = itemView.findViewById(R.id.tvUsername);
+            tvUsername = itemView.findViewById(R.id.tv_postitem_UserTitle);
             //ivImage = itemView.findViewById(R.id.ivImage);
-            tvContent = itemView.findViewById(R.id.tvContent);
+            tvContent = itemView.findViewById(R.id.tv_postitem_Caption);
         }
 
         public void bind(Post post) {

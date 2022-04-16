@@ -9,6 +9,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class ParseApplication extends Application {
+    private final String PARSE_ID = BuildConfig.PARSE_ID;
+    private final String PARSE_KEY = BuildConfig.CLIENT_KEY;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -28,8 +30,8 @@ public class ParseApplication extends Application {
         // any network interceptors must be added with the Configuration Builder given this syntax
         ParseObject.registerSubclass(Post.class);
         Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId("pPl9jgmXjxbAE3QMJv1JvXt4KIK8hu6smR0MwJoI") // should correspond to Application Id env variable
-                .clientKey("tm1RyLvGEYrrkCTn4rNn1U4QTLnXHOtsiRRt5yxZ")  // should correspond to Client key env variable
+                .applicationId(PARSE_ID) // should correspond to Application Id env variable
+                .clientKey(PARSE_KEY)  // should correspond to Client key env variable
                 .server("https://parseapi.back4app.com").build());
     }
 }

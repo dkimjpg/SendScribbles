@@ -17,6 +17,7 @@ import com.example.sendscribbles.Fragments.ProfileFragment;
 import com.example.sendscribbles.Fragments.UserFeedFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.snackbar.Snackbar;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
