@@ -18,3 +18,7 @@ GIF created with [Recordit](https://recordit.co/?utm_source=player&utm_medium=he
 Here is the gif of the progress in week 2 of the project
 
 <img src='https://github.com/dkimjpg/SendScribbles/blob/main/Animation.gif' title='Video Walkthrough - Week 2' width='' alt='Video Walkthrough' />
+
+Here is the gif of the progress in week 3 of the project
+
+<img src='https://github.com/dkimjpg/SendScribbles/blob/main/week%203.gif' title='Video Walkthrough - Week 3' width='' alt='Video Walkthrough' />
