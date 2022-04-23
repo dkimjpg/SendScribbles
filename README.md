@@ -3,7 +3,7 @@
  
  User Stories:
  - [X] User can login into application or sign up for a new account.
-- [ ] User can create a new post, create a drawing and upload onto their feed.
+- [X] User can create a new post, create a drawing and upload onto their feed.
 - [X] User can view recent posts from others in the application
 - [X] User can view their Profile which contains all of their posts that they have created
 
