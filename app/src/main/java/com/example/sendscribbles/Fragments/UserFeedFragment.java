@@ -1,5 +1,6 @@
 package com.example.sendscribbles.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sendscribbles.EndlessRecyclerViewScrollListener;
+import com.example.sendscribbles.LoginActivity;
+import com.example.sendscribbles.MainActivity;
 import com.example.sendscribbles.Post;
 import com.example.sendscribbles.R;
 import com.example.sendscribbles.postsAdapter;
@@ -39,6 +45,7 @@ public class UserFeedFragment extends Fragment {
 
     public static final String TAG = "UserFeed Fragment";
     private RecyclerView rvPost;
+    private MenuItem logOut;
     protected SwipeRefreshLayout swipeRefreshLayout;
     protected EndlessRecyclerViewScrollListener endlessRecyclerViewScrollListener;
     protected List<Post> Posts;
@@ -59,10 +66,13 @@ public class UserFeedFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
 
         // objects
         rvPost = view.findViewById(R.id.rvPost);
+        logOut = view.findViewById(R.id.logout);
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
 
         // declaring post object and adapter
@@ -90,6 +100,25 @@ public class UserFeedFragment extends Fragment {
         rvPost.addOnScrollListener(endlessRecyclerViewScrollListener);
 
         queryPost(view);
+    }
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_profile, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.logout:
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                goLoginActivity();
+                Toast.makeText(getContext(), "Log Out Success!", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void loadMore(int offset, View view) {
@@ -166,5 +195,10 @@ public class UserFeedFragment extends Fragment {
         public boolean canSwipeDismissView(View child) {
             return false;
         }
+    }
+
+    private void goLoginActivity() {
+        Intent i = new Intent(getActivity(), LoginActivity.class);
+        startActivity(i);
     }
 }
