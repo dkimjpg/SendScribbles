@@ -22,7 +22,6 @@ import com.parse.ParseUser;
 public class MainActivity extends AppCompatActivity {
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
-    private Button btnSignOut;
     private int prevButton = R.id.actionHome;
 
     @Override
@@ -31,20 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        btnSignOut = findViewById(R.id.btnSignOut);
 
-        // Sign out
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // sign out the user
-                ParseUser.logOut();
-                ParseUser currentUser = ParseUser.getCurrentUser();
-                // go into the login activity page
-                goLoginActivity();
-                Toast.makeText(MainActivity.this, "Log out successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
