@@ -7,13 +7,28 @@
     android:orientation="vertical"
     android:padding="5dp"
     tools:context=".Fragments.ComposeFragment">
+<!--
+    <com.example.sendscribbles.Fragments.ComposeFragment.CanvasLayout.PaintView
+        android:id="@+id/simpleDrawingView1"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
 
+        /> -->
+    <!--
     <ImageView
         android:id="@+id/ivDraw"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_marginTop="5dp"
-        tools:src="@tools:sample/avatars" />
+        tools:src="@tools:sample/avatars" /> -->
+    <com.example.sendscribbles.SimpleDrawingView
+        android:id="@+id/simpleDrawingView"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
 
     <EditText
         android:id="@+id/etDescription"

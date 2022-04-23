@@ -43,6 +43,7 @@ public class ComposeFragment extends Fragment {
     private ImageView ivDraw;
     private EditText etDescription;
     private Button btnSubmit;
+    private View simpleDrawingView;
 
     public int BRUSH_SIZE = 10;
     public static final int COLOR_PEN = Color.RED;
@@ -64,7 +65,8 @@ public class ComposeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    class CanvasLayout extends LinearLayout
+    /*
+    public class CanvasLayout extends LinearLayout
     {
         public CanvasLayout(Context context) {
             super(context);
@@ -101,7 +103,7 @@ public class ComposeFragment extends Fragment {
             }
         }
 
-        /* May have to implement the following code differently
+        //May have to implement the following code differently
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
@@ -111,7 +113,7 @@ public class ComposeFragment extends Fragment {
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setXfermode(null);
         mPaint.setAlpha(0xff);
-        */ //May have to implement the code above differently
+        //May have to implement the code above differently
 
 
 
@@ -192,13 +194,14 @@ public class ComposeFragment extends Fragment {
             return true;
         }
 
-    }
+    } */
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { //may or may not need to change this
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        CanvasLayout layout = new CanvasLayout(getActivity());
-        layout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
+
+        //CanvasLayout layout = new CanvasLayout(getActivity());
+        //layout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
 
         return inflater.inflate(R.layout.fragment_compose, container, false); //Might need to edit this code <---------
     }
@@ -208,7 +211,8 @@ public class ComposeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         // objects
-        ivDraw = view.findViewById(R.id.ivDraw);
+        //ivDraw = view.findViewById(R.id.ivDraw);
+        simpleDrawingView = view.findViewById(R.id.simpleDrawingView);
         etDescription = view.findViewById(R.id.etDescription);
         btnSubmit = view.findViewById(R.id.btnSubmit);
 
