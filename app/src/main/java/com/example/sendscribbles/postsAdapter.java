@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class postsAdapter extends RecyclerView.Adapter<postsAdapter.ViewHolder> {
@@ -60,7 +62,7 @@ public class postsAdapter extends RecyclerView.Adapter<postsAdapter.ViewHolder> 
 
         // variables declaration
         private TextView tvUsername;
-        // private ImageView ivImage;
+        private ImageView ivImage;
         private TextView tvContent;
 
         public ViewHolder(@NonNull View itemView) {
@@ -68,7 +70,7 @@ public class postsAdapter extends RecyclerView.Adapter<postsAdapter.ViewHolder> 
 
             // setting the variables
             tvUsername = itemView.findViewById(R.id.tv_postitem_UserTitle);
-            //ivImage = itemView.findViewById(R.id.ivImage);
+            ivImage = itemView.findViewById(R.id.iv_postitem_PostImage);
             tvContent = itemView.findViewById(R.id.tv_postitem_Caption);
         }
 
@@ -76,7 +78,10 @@ public class postsAdapter extends RecyclerView.Adapter<postsAdapter.ViewHolder> 
             // binding
             tvUsername.setText(post.getUser().getUsername());
             tvContent.setText(post.getDescription());
-            // --------- TO DO (drawing) -----------------
+
+            if(post.getImage() != null){
+                Glide.with(context).load(post.getImage().getUrl()).into(ivImage);
+            }
         }
     }
 

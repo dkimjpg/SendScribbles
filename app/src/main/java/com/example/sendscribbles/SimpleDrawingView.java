@@ -1,6 +1,7 @@
 package com.example.sendscribbles;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -16,9 +17,13 @@ public class SimpleDrawingView extends View {
     private Paint drawPaint;
     // stores next circle
     private Path path = new Path();
+    private Canvas c;
+    public static Bitmap drawing;
 
     public SimpleDrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        drawing = Bitmap.createBitmap(1080,350, Bitmap.Config.ARGB_8888);
+        c = new Canvas(drawing);
         setFocusable(true);
         setFocusableInTouchMode(true);
         setupPaint();
@@ -36,8 +41,16 @@ public class SimpleDrawingView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        canvas.drawPath(path, drawPaint);
+    protected void onDraw(Canvas c) {
+        c.drawBitmap(drawing,0,0,new Paint(Paint.ANTI_ALIAS_FLAG));
+        c.drawPath(path,drawPaint);
+
+    }
+
+    private void touchup(float x, float y){
+        path.lineTo(x,y);
+        c.drawPath(path,drawPaint);
+        path.reset();
     }
 
     @Override
@@ -52,6 +65,8 @@ public class SimpleDrawingView extends View {
             case MotionEvent.ACTION_MOVE:
                 path.lineTo(pointX, pointY);
                 break;
+            case MotionEvent.ACTION_UP:
+                touchup(pointX, pointY);
             default:
                 return false;
         }
@@ -59,5 +74,10 @@ public class SimpleDrawingView extends View {
         postInvalidate();
         return true;
     }
+
+    public Bitmap getDrawing(){
+        return drawing;
+    }
+
 
 }
