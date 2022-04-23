@@ -46,7 +46,8 @@ import androidx.annotation.Nullable;
 public class ComposeFragment extends Fragment {
 
     public static final String TAG = "Compose Fragment";
-    private ImageView ivDraw;
+    private Button undoBtn;
+    private Button redoBtn;
     private EditText etDescription;
     private Button btnSubmit;
     private SimpleDrawingView simpleDrawingView;
@@ -75,9 +76,8 @@ public class ComposeFragment extends Fragment {
         simpleDrawingView = view.findViewById(R.id.simpleDrawingView);
         etDescription = view.findViewById(R.id.etDescription);
         btnSubmit = view.findViewById(R.id.btnSubmit);
-
-        // Draw the image
-        // -------------------TO DO---------------------
+        undoBtn = view.findViewById(R.id.undoBtn);
+        redoBtn = view.findViewById(R.id.redoBtn);
 
         // Submit button
         btnSubmit.setOnClickListener(new View.OnClickListener()
@@ -114,6 +114,23 @@ public class ComposeFragment extends Fragment {
                 savePost(currentUser, content, photoFile);
             }
         });
+
+        // undo button
+        undoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                simpleDrawingView.undo();
+            }
+        });
+
+        // redo button
+        redoBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                simpleDrawingView.redo();
+            }
+        });
     }
 
     private void savePost(ParseUser currentUser, String content, File photoFile)
@@ -144,6 +161,7 @@ public class ComposeFragment extends Fragment {
                 Log.i(TAG, "Post is saved successfully");
                 // empty description box
                 etDescription.setText("");
+                simpleDrawingView.clear();
             }
         });
     }

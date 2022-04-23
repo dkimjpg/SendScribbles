@@ -6,9 +6,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.ArrayList;
 
 public class SimpleDrawingView extends View {
     // setup initial color
@@ -19,10 +22,14 @@ public class SimpleDrawingView extends View {
     private Path path = new Path();
     private Canvas c;
     public static Bitmap drawing;
+    private ArrayList<Path> mPath = new ArrayList<Path>();
+    private ArrayList<Paint> mPaint = new ArrayList<Paint>();
+    private ArrayList<Path> undoPath = new ArrayList<Path>();
+    private ArrayList<Paint> undoPaint = new ArrayList<Paint>();
 
     public SimpleDrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        drawing = Bitmap.createBitmap(1080,350, Bitmap.Config.ARGB_8888);
+        drawing = Bitmap.createBitmap(1080,1100, Bitmap.Config.ARGB_8888);
         c = new Canvas(drawing);
         setFocusable(true);
         setFocusableInTouchMode(true);
@@ -43,14 +50,24 @@ public class SimpleDrawingView extends View {
     @Override
     protected void onDraw(Canvas c) {
         c.drawBitmap(drawing,0,0,new Paint(Paint.ANTI_ALIAS_FLAG));
+
+        int i = 0;
+        for (Path path : mPath){
+            c.drawPath(path, mPaint.get(i));
+            i++;
+        }
+
         c.drawPath(path,drawPaint);
 
     }
 
     private void touchup(float x, float y){
         path.lineTo(x,y);
-        c.drawPath(path,drawPaint);
-        path.reset();
+        //c.drawPath(path,drawPaint);
+        mPath.add(path);
+        mPaint.add(drawPaint);
+        path = new Path();
+        setupPaint();
     }
 
     @Override
@@ -61,12 +78,14 @@ public class SimpleDrawingView extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 path.moveTo(pointX, pointY);
-                return true;
+                // draw while move on the cursor
+                break;
             case MotionEvent.ACTION_MOVE:
                 path.lineTo(pointX, pointY);
                 break;
             case MotionEvent.ACTION_UP:
                 touchup(pointX, pointY);
+                break;
             default:
                 return false;
         }
@@ -76,8 +95,35 @@ public class SimpleDrawingView extends View {
     }
 
     public Bitmap getDrawing(){
+        int i = 0;
+        for (Path path : mPath){
+            c.drawPath(path, mPaint.get(i));
+            i++;
+        }
         return drawing;
     }
 
+    public void clear(){
+        mPath.clear();
+        mPaint.clear();
+        c.drawColor(0, PorterDuff.Mode.CLEAR);
+        invalidate();
+    }
+
+    public void undo(){
+        if (mPath.size() > 0){
+            undoPath.add(mPath.remove(mPath.size() - 1));
+            undoPaint.add(mPaint.remove(mPaint.size() - 1));
+        }
+        invalidate();
+    }
+
+    public void redo(){
+        if (undoPath.size() > 0){
+            mPath.add(undoPath.remove(undoPath.size() - 1));
+            mPaint.add(undoPaint.remove(undoPaint.size() - 1));
+        }
+        invalidate();
+    }
 
 }
