@@ -22,7 +22,7 @@ public class SimpleDrawingView extends View {
 
     public SimpleDrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        drawing = Bitmap.createBitmap(1080,350, Bitmap.Config.ARGB_8888);
+        drawing = Bitmap.createBitmap(1080, 1080, Bitmap.Config.ARGB_8888);
         c = new Canvas(drawing);
         setFocusable(true);
         setFocusableInTouchMode(true);
@@ -50,7 +50,6 @@ public class SimpleDrawingView extends View {
     private void touchup(float x, float y){
         path.lineTo(x,y);
         c.drawPath(path,drawPaint);
-        path.reset();
     }
 
     @Override
@@ -66,7 +65,7 @@ public class SimpleDrawingView extends View {
                 path.lineTo(pointX, pointY);
                 break;
             case MotionEvent.ACTION_UP:
-                touchup(pointX, pointY);
+                touchup(event.getX(), event.getY());
             default:
                 return false;
         }
